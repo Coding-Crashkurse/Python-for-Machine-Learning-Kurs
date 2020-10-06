@@ -2,7 +2,7 @@
 
 # Strings (str)
 'einfache Anführungszeichen'
-"einfache Anführungszeichen"
+"doppelte Anführungszeichen"
 'Ich bin "nested"'
 
 string = "test"
@@ -15,6 +15,9 @@ type(z)
 # Sequence types (list, tuple, set, string) mutability
 einkaufsliste = ["apfel", "birne", "Milch"]
 einkaufsliste[0]
+einskausliste = ["Apfel", ["Milch", "Schokolade"]]
+einskausliste[1][0]
+
 einkaufsliste[0:2]
 einkaufsliste[-1]
 einkaufsliste[-1] = "H-Milch"
