@@ -1,11 +1,14 @@
 ### Datentypen ###
 
 # Strings (str)
-'einfache Anführungszeichen'
+"einfache Anführungszeichen"
 "doppelte Anführungszeichen"
 'Ich bin "nested"'
 
 string = "test"
+
+# Variable
+
 # Numeric (int, float)
 x = 3
 y = 3.2
