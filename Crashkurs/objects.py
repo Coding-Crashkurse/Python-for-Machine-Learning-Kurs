@@ -8,12 +8,13 @@ Created on Tue Oct 13 19:38:02 2020
 
 isinstance(1.2, object)
 
-# Objects haben Attribute und Methoden 
+# Objects haben Attribute und Methoden
 
 "test".__len__()
 "test".capitalize()
+[].append(1)
 
-x = [1,2,3,4,5]
+x = [1, 2, 3, 4, 5]
 result = []
 
 for zahl in x:
@@ -22,6 +23,6 @@ for zahl in x:
         result.append(zahl)
     else:
         result.append(zahl)
-        
+
 print(result)
-    
+
