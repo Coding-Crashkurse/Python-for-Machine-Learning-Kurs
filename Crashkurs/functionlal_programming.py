@@ -39,3 +39,9 @@ import functools
 
 def multiply_2_values(x, y):
     return x * y
+
+
+### Lamdba operator
+
+map(lambda x: x * 2, [1, 2, 3, 4])
+
