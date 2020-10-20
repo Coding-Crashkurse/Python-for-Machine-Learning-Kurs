@@ -1,4 +1,13 @@
 # Funktionen
+for num in [1,2,3,4,5]:
+    print(num * 2)
+    
+for num in [1,2,3,4,5]:
+    print(num * 3)
+    
+for num in [1,2,3,4,5]:
+    print(num * 4)
+
 
 len([1,2,3])
 
