@@ -45,3 +45,7 @@ def multiply_2_values(x, y):
 
 map(lambda x: x * 2, [1, 2, 3, 4])
 
+### Zip
+liste_1 = ["a", "b", "c", "d", "e"]
+liste_2 = [1, 2, 3, 4, 5]
+
