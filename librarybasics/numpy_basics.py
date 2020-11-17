@@ -6,15 +6,16 @@ import sys
 
 
 start = time.time()
-long_array = np.arange(100000000)
+long_list = list(range(100000000))
 end = time.time()
 print(end - start)
 
 
 start = time.time()
-long_list = list(range(100000000))
+long_array = np.arange(100000000)
 end = time.time()
 print(end - start)
+
 
 len(long_array) == len(long_list)
 
@@ -27,7 +28,7 @@ np.array(["a", 1, 2, 3])
 a = [1, 2, 3]
 b = [1, 2, 3]
 
-a * b
+a + b
 
 np_a = np.array([3, 4, 1])
 np_b = np.array([2, 3, 1])
@@ -41,10 +42,12 @@ np.ones(4)
 
 # Indexing
 arr = np.arange(11)
+
+arr[1]
+arr[0:3]
+
 arr > 2
 arr[arr > 2]
-
-arr[0:3]
 
 arr2 = arr
 arr[2] = 10
@@ -66,15 +69,16 @@ np.random.rand(10)
 np.sort(np_a)
 
 
-a = np.array([[1,2],[1,2]])
-b = np.array([[3,4]])
+a = np.array([[1, 2], [1, 2]])
+b = np.array([[3, 4]])
 b
 
-result = np.concatenate((a, b), axis = 0)
+result = np.concatenate((a, b), axis=0)
 result.shape
 
-result.reshape(2,3)
+result.reshape(2, 3)
 
+np.arange(0, 10).reshape(2, 5)
 
 result * 3
 result.sum()
@@ -91,6 +95,4 @@ result.transpose()
 np.flip(result)
 
 result.flatten()
-
-
 
