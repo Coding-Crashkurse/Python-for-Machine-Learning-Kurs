@@ -1,41 +1,40 @@
-import seaborn as sns
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+import numpy as np
+import seaborn as sns
 
-df = pd.read_csv("https://gist.githubusercontent.com/seankross/a412dfbd88b3db70b74b/raw/5f23f993cd87c283ce766e7ac6b329ee7cc2e1d1/mtcars.csv")
+df = pd.read_csv(
+    "https://gist.githubusercontent.com/seankross/a412dfbd88b3db70b74b/raw/5f23f993cd87c283ce766e7ac6b329ee7cc2e1d1/mtcars.csv"
+)
+df
 
-sns.displot(df["mpg"], binwidth=1)
-sns.displot(df["mpg"], shrink=0.8)
-
-sns.displot(df, x="mpg", hue="cyl")
-sns.displot(df, x="mpg", hue="cyl", multiple="stack")
-sns.displot(df, x="mpg", hue="cyl", multiple="dodge")
-
-sns.displot(df, x="mpg", col="cyl", multiple="dodge")
-
-sns.displot(df, x="mpg", kind="kde")
-  
-
-# Scatterplot
-sns.scatterplot(x="mpg", y="disp", hue="cyl", data=df) 
-sns.scatterplot(x="mpg", y="disp", hue="cyl", data=df) 
-sns.scatterplot(x="mpg", y="disp", hue="cyl", data=df, s=300, palette=["green", "blue", "red"])
-sns.scatterplot(x="mpg", y="disp", hue="cyl", data=df, s=300, palette=["green", "blue", "red"]).set(title="bla", xlabel="bla", ylabel="muh")
-
-# Violinplot
-df.columns
-
-sns.violinplot(x="mpg", data=df)
-sns.violinplot(y="mpg", data=df)
-sns.violinplot(x="cyl", y="mpg", data=df)
-
-df["cyl"].value_counts().plot(kind="pie", y="cyl")
+X = df[["mpg", "hp"]]
+y = df["cyl"]
 
 
-sns.heatmap(df.isna())
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.33, random_state=0
+)
 
-df.drop(columns=["model"], axis=1, inplace=True)
+clf = RandomForestClassifier(random_state=0)
+clf.fit(X_train, y_train)
 
-sns.heatmap(df)
+
+clf.predict_proba(X_test)
+
+y_pred = clf.predict(X_test)
+
+from sklearn.metrics import confusion_matrix
+
+accuracy = (
+    confusion_matrix(y_test, y_pred).diagonal().sum()
+    / confusion_matrix(y_test, y_pred).sum()
+)
+
+print(f"Accuracy is: {round(accuracy, 4) * 100}% ")
 
 
-sns.lineplot(data=df, x="mpg", y="hp")
+feat_importances = pd.Series(clf.feature_importances_, index=X.columns)
+feat_importances.sort_values(inplace=True, ascending=False)
+feat_importances.plot(kind="bar")
