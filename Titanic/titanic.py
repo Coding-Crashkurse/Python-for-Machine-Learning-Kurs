@@ -142,8 +142,20 @@ for clf in classifiers:
 ### Testset gesamt wieder als test definieren
 
 clf = GradientBoostingClassifier()
-clf.fit(X_train, y_train)
-y_pred = clf.predict(test)
+
+parameters = {
+    "n_estimators":[5,50,250,500],
+    "max_depth":[1,3,5,7,9],
+    "learning_rate":[0.01,0.1,1,10,100]
+}
+
+from sklearn.model_selection import GridSearchCV
+cv = GridSearchCV(clf,parameters,cv=5)
+
+cv.fit(X_train, y_train)
+cv.best_params_
+
+y_pred = cv.predict(test)
 
 test_Survived = pd.Series(y_pred, name="Survived").astype("int")
 test_Survived
